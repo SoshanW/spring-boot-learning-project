@@ -11,7 +11,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 //Swagger is a third party dependency so we need to configure it
 public class SwaggerConfig {
 
-    @Bean //if not for a bean it will not put into the container
+
+    //if not for a bean it will not put into the container
+    @Bean
     public Docket swaggerApi(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()

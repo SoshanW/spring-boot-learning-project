@@ -1,9 +1,12 @@
 package com.iitposs.pos.controller;
 
 import com.iitposs.pos.dto.request.CustomerSaveRequestDTO;
+import com.iitposs.pos.dto.response.CustomerResponseDTO;
 import com.iitposs.pos.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -24,6 +27,20 @@ public class CustomerController {
     public String updateCustomer(@RequestBody CustomerSaveRequestDTO saveRequestDTO) {
         String message = customerService.updateCustomer(saveRequestDTO);
         return message;
+    }
+
+    @GetMapping(
+            path = "/get-customer",
+            params = "id"
+    )
+    public CustomerResponseDTO getCustomerByID(@RequestParam (value="id") int customerID){
+         return customerService.getCustomerById(customerID);
+
+    }
+
+    @GetMapping(path = "/get-all-customers")
+    public List<CustomerResponseDTO> getAllCustomers() {
+        return customerService.getAllCustomers();
     }
 
 
