@@ -25,8 +25,7 @@ public class CustomerController {
 
     @PutMapping(path = "/update-customer")
     public String updateCustomer(@RequestBody CustomerSaveRequestDTO saveRequestDTO) {
-        String message = customerService.updateCustomer(saveRequestDTO);
-        return message;
+        return customerService.updateCustomer(saveRequestDTO);
     }
 
     @GetMapping(
@@ -43,6 +42,13 @@ public class CustomerController {
         return customerService.getAllCustomers();
     }
 
+    @DeleteMapping(
+            path = "/delete-customer/{id}"
+    )
+    public String deleteCustomer(@PathVariable(value = "id") int customerID){
 
+        return customerService.deleteCustomer(customerID);
+
+    }
 
 }

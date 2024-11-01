@@ -107,4 +107,16 @@ public class CustomerServiceImpl implements CustomerService {
 
         return responseDTOList;
     }
+
+    @Override
+    public String deleteCustomer(int customerID) {
+
+        if (customerRepo.existsById(customerID)){
+            customerRepo.deleteById(customerID);
+            return customerID + " customer has been deleted...!";
+        }else {
+            return "Customer is not found...!";
+        }
+
+    }
 }
