@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ItemResponseDTO {
+public class ItemAllDetailsResponseDTO {
+    private int itemID;
     private String itemName;
     private MeasuringType measuringType;
     private double supplierPrice;

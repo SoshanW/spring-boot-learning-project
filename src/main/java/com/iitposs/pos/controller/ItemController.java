@@ -1,10 +1,14 @@
 package com.iitposs.pos.controller;
 
 import com.iitposs.pos.dto.request.ItemSaveRequestDTO;
+import com.iitposs.pos.dto.response.CustomerResponseDTO;
+import com.iitposs.pos.dto.response.ItemAllDetailsResponseDTO;
 import com.iitposs.pos.dto.response.ItemResponseDTO;
 import com.iitposs.pos.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -24,9 +28,17 @@ public class ItemController {
         return itemService.updateItem(itemSaveRequestDTO);
     }
 
-    @GetMapping(path = "/get-item-by-id")
+    @GetMapping(
+            path = "/get-item-by-id",
+            params = "id"
+    )
     public ItemResponseDTO getItemById(@RequestParam(value = "id") int itemID) {
         return itemService.getItemByID(itemID);
+    }
+
+    @GetMapping (path = "/get-all-items")
+    public List<ItemResponseDTO> getAllItems() {
+        List<ItemResponseDTO> itemResponseDTOList = itemService.getAllItems();
     }
 
 }

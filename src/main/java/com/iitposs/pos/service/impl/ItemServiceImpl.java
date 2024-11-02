@@ -8,6 +8,9 @@ import com.iitposs.pos.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ItemServiceImpl implements ItemService {
 
@@ -58,7 +61,6 @@ public class ItemServiceImpl implements ItemService {
             Item item = itemRepo.getReferenceById(itemID);
 
             return new ItemResponseDTO(
-                    item.getItemID(),
                     item.getItemName(),
                     item.getMeasuringType(),
                     item.getSupplierPrice(),
@@ -69,5 +71,25 @@ public class ItemServiceImpl implements ItemService {
             );
 
         }return null;
+    }
+
+    @Override
+    public List<ItemResponseDTO> getAllItems() {
+
+        List<Item> items = itemRepo.findAll();
+        List<ItemResponseDTO> itemResponseDTOList = new ArrayList<>();
+
+        for (Item item : items) {
+            itemResponseDTOList.add(new ItemResponseDTO(
+                    item.getItemName(),
+                    item.getMeasuringType(),
+                    item.getSupplierPrice(),
+                    item.getDisplayPrice(),
+                    item.getSellingPrice(),
+                    item.getQtyOnHand(),
+                    item.isActiveState()
+            ));
+        }
+        return itemResponseDTOList;
     }
 }
