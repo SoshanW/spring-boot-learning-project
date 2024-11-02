@@ -19,6 +19,4 @@ public class CustomerSaveRequestDTO {
     private String nic;
     private boolean activeState;
 
-
-
 }

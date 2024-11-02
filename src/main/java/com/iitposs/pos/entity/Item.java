@@ -20,7 +20,7 @@ public class Item {
     private int item_id;
 
     @Column(name = "item_name", nullable = false, length = 100)
-    private String name;
+    private String itemName;
 
     @Column(name = "measuring_type", nullable = false)
     @Enumerated(EnumType.STRING)

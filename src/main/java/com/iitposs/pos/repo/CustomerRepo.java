@@ -10,8 +10,8 @@ import java.util.List;
 @Repository
 @EnableJpaRepositories
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
-    List<Customer> findAllByActiveStateEquals(boolean state);
     //The generic parameters would be the object (entity) and the primary key of the object
+    List<Customer> findAllByActiveStateEquals(boolean state);
 
 
 }
