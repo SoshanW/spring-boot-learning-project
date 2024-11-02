@@ -21,5 +21,4 @@ public class TestController {
     public String getMyName(){
         return "Soshan Wijayarathne";
     }
-
 }

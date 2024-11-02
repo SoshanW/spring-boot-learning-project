@@ -1,4 +1,4 @@
-package com.iitposs.pos.dto.request;
+package com.iitposs.pos.dto.response;
 
 import com.iitposs.pos.util.enums.MeasuringType;
 import lombok.AllArgsConstructor;
@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ItemSaveRequestDTO {
-
+public class ItemResponseDTO {
     private int itemID;
     private String itemName;
     private MeasuringType measuringType;
@@ -18,5 +17,4 @@ public class ItemSaveRequestDTO {
     private double sellingPrice;
     private int qtyOnHand;
     private boolean activeState;
-
 }

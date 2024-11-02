@@ -64,7 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerRepo.existsById(customerID)){
             Customer customer = customerRepo.getReferenceById(customerID);
 
-            /*CustomerResponseDTO responseDTO = new CustomerResponseDTO(
+            CustomerResponseDTO responseDTO = new CustomerResponseDTO(
                     customer.getCustomerName(),
                     customer.getCustomerAddress(),
                     customer.getSalary(),
@@ -73,15 +73,15 @@ public class CustomerServiceImpl implements CustomerService {
                     customer.isActiveState()
             );
 
-            return responseDTO;*/
-            return new CustomerResponseDTO(
+            return responseDTO;
+           /* return new CustomerResponseDTO(
                     customer.getCustomerName(),
                     customer.getCustomerAddress(),
                     customer.getSalary(),
                     customer.getContacts(),
                     customer.getNic(),
                     customer.isActiveState()
-            );
+            );*/
 
         }else {
             return null;

@@ -1,7 +1,7 @@
 package com.iitposs.pos.controller;
 
-import com.iitposs.pos.dto.request.CustomerSaveRequestDTO;
 import com.iitposs.pos.dto.request.ItemSaveRequestDTO;
+import com.iitposs.pos.dto.response.ItemResponseDTO;
 import com.iitposs.pos.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +22,11 @@ public class ItemController {
     @PutMapping(path = "/update-item")
     public String updateItem(@RequestBody ItemSaveRequestDTO itemSaveRequestDTO) {
         return itemService.updateItem(itemSaveRequestDTO);
+    }
+
+    @GetMapping(path = "/get-item-by-id")
+    public ItemResponseDTO getItemById(@RequestParam(value = "id") int itemID) {
+        return itemService.getItemByID(itemID);
     }
 
 }
