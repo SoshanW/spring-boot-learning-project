@@ -57,4 +57,13 @@ public class ItemController {
         return itemAllDetailsResponseDTOS;
     }
 
+    @GetMapping(
+            path = "/get-by-name",
+            params = "name"
+    )
+    public List<ItemResponseDTO> getItemByName(@RequestParam(value = "name")String name){
+        List<ItemResponseDTO> responseDTOS = itemService.getItemByName(name);
+        return responseDTOS;
+    }
+
 }

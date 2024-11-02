@@ -6,6 +6,8 @@ import com.iitposs.pos.dto.response.ItemResponseDTO;
 import com.iitposs.pos.entity.Item;
 import com.iitposs.pos.repo.ItemRepo;
 import com.iitposs.pos.service.ItemService;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +20,13 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemRepo itemRepo;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     public String saveItem(ItemSaveRequestDTO itemSaveRequestDTO) {
 
-        Item item = new Item(
+        /*Item item = new Item(
                 itemSaveRequestDTO.getItemID(),
                 itemSaveRequestDTO.getItemName(),
                 itemSaveRequestDTO.getMeasuringType(),
@@ -31,9 +36,15 @@ public class ItemServiceImpl implements ItemService {
                 itemSaveRequestDTO.getQtyOnHand(),
                 itemSaveRequestDTO.isActiveState()
         );
+*/
+        Item item = modelMapper.map(itemSaveRequestDTO, Item.class);
 
-        itemRepo.save(item);
-        return "Item Saved";
+        if (!itemRepo.existsById(item.getItemID())){
+            itemRepo.save(item);
+            return "Item Saved...!";
+        }else {
+            return "Item Already Saved...!";
+        }
     }
 
     @Override
@@ -122,5 +133,20 @@ public class ItemServiceImpl implements ItemService {
             ));
         }
         return itemAllDetailsResponseDTOList;
+    }
+
+    @Override
+    public List<ItemResponseDTO> getItemByName(String itemName) {
+        List<Item> items = itemRepo.findAllByItemNameEqualsAndActiveStateEquals(itemName, true);
+
+        if (!items.isEmpty()) {
+            List<ItemResponseDTO> itemResponseDTOS = modelMapper.map(
+                    items, new TypeToken<List<ItemResponseDTO>>() {
+                    }.getType()
+            );
+            return itemResponseDTOS;
+        }else {
+            return null;
+        }
     }
 }

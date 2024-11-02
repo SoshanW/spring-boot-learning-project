@@ -18,4 +18,6 @@ public interface ItemService {
     String deleteItem(int itemID);
 
     List<ItemAllDetailsResponseDTO> getAllItemsByState(boolean state);
+
+    List<ItemResponseDTO> getItemByName(String itemName);
 }
