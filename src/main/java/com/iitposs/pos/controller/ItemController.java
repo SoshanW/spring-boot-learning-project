@@ -48,4 +48,13 @@ public class ItemController {
         return message;
     }
 
+    @GetMapping(
+            path = "/get-all-items-by-state",
+            params = "state"
+    )
+    public List<ItemAllDetailsResponseDTO> getAllItemsByState(@RequestParam(value = "state") boolean state) {
+        List<ItemAllDetailsResponseDTO> itemAllDetailsResponseDTOS = itemService.getAllItemsByState(state);
+        return itemAllDetailsResponseDTOS;
+    }
+
 }

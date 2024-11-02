@@ -1,6 +1,7 @@
 package com.iitposs.pos.service.impl;
 
 import com.iitposs.pos.dto.request.ItemSaveRequestDTO;
+import com.iitposs.pos.dto.response.ItemAllDetailsResponseDTO;
 import com.iitposs.pos.dto.response.ItemResponseDTO;
 import com.iitposs.pos.entity.Item;
 import com.iitposs.pos.repo.ItemRepo;
@@ -101,5 +102,25 @@ public class ItemServiceImpl implements ItemService {
         }else {
             return "Item Not Found...!";
         }
+    }
+
+    @Override
+    public List<ItemAllDetailsResponseDTO> getAllItemsByState(boolean state) {
+
+        List<Item> items = itemRepo.findAllByActiveStateEquals(state);
+        List<ItemAllDetailsResponseDTO> itemAllDetailsResponseDTOList = new ArrayList<>();
+        for (Item item : items) {
+            itemAllDetailsResponseDTOList.add(new ItemAllDetailsResponseDTO(
+                    item.getItemID(),
+                    item.getItemName(),
+                    item.getMeasuringType(),
+                    item.getSupplierPrice(),
+                    item.getDisplayPrice(),
+                    item.getSellingPrice(),
+                    item.getQtyOnHand(),
+                    item.isActiveState()
+            ));
+        }
+        return itemAllDetailsResponseDTOList;
     }
 }
