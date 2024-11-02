@@ -39,6 +39,13 @@ public class ItemController {
     @GetMapping (path = "/get-all-items")
     public List<ItemResponseDTO> getAllItems() {
         List<ItemResponseDTO> itemResponseDTOList = itemService.getAllItems();
+        return itemResponseDTOList;
+    }
+
+    @DeleteMapping(path = "/delete-item/{id}")
+    public String deleteItemById(@PathVariable(value = "id") int itemID) {
+        String message = itemService.deleteItem(itemID);
+        return message;
     }
 
 }

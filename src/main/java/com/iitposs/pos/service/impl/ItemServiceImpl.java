@@ -92,4 +92,14 @@ public class ItemServiceImpl implements ItemService {
         }
         return itemResponseDTOList;
     }
+
+    @Override
+    public String deleteItem(int itemID) {
+        if (itemRepo.existsById(itemID)) {
+            itemRepo.deleteById(itemID);
+            return itemID + " Item Deleted...!";
+        }else {
+            return "Item Not Found...!";
+        }
+    }
 }
