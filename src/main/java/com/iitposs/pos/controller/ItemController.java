@@ -19,4 +19,9 @@ public class ItemController {
        return itemService.saveItem(itemSaveRequestDTO);
     }
 
+    @PutMapping(path = "/update-item")
+    public String updateItem(@RequestBody ItemSaveRequestDTO itemSaveRequestDTO) {
+        return itemService.updateItem(itemSaveRequestDTO);
+    }
+
 }

@@ -30,4 +30,21 @@ public class ItemServiceImpl implements ItemService {
         itemRepo.save(item);
         return "Item Saved";
     }
+
+    @Override
+    public String updateItem(ItemSaveRequestDTO itemSaveRequestDTO) {
+        Item item = new Item(
+                itemSaveRequestDTO.getItem_id(),
+                itemSaveRequestDTO.getItemName(),
+                itemSaveRequestDTO.getMeasuringType(),
+                itemSaveRequestDTO.getSupplierPrice(),
+                itemSaveRequestDTO.getDisplayPrice(),
+                itemSaveRequestDTO.getSellingPrice(),
+                itemSaveRequestDTO.getQtyOnHand(),
+                itemSaveRequestDTO.isActiveState()
+        );
+
+        itemRepo.save(item);
+        return "Item Updated";
+    }
 }
