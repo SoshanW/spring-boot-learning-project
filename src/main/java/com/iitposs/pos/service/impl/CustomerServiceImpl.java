@@ -1,6 +1,7 @@
 package com.iitposs.pos.service.impl;
 
 import com.iitposs.pos.dto.request.CustomerSaveRequestDTO;
+import com.iitposs.pos.dto.response.CustomerAllDetailsResponseDTO;
 import com.iitposs.pos.dto.response.CustomerResponseDTO;
 import com.iitposs.pos.entity.Customer;
 import com.iitposs.pos.repo.CustomerRepo;
@@ -118,5 +119,25 @@ public class CustomerServiceImpl implements CustomerService {
             return "Customer is not found...!";
         }
 
+    }
+
+    @Override
+    public List<CustomerAllDetailsResponseDTO> getAllCustomersByState(boolean state) {
+        List<Customer> customers = customerRepo.findAllByActiveStateEquals(state);
+
+        List<CustomerAllDetailsResponseDTO> responseDTOList = new ArrayList<>();
+
+        for (Customer customer : customers) {
+            responseDTOList.add(new CustomerAllDetailsResponseDTO(
+                    customer.getCustomerID(),
+                    customer.getCustomerName(),
+                    customer.getCustomerAddress(),
+                    customer.getSalary(),
+                    customer.getContacts(),
+                    customer.getNic(),
+                    customer.isActiveState()
+            ));
+        }
+        return responseDTOList;
     }
 }

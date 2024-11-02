@@ -1,6 +1,7 @@
 package com.iitposs.pos.controller;
 
 import com.iitposs.pos.dto.request.CustomerSaveRequestDTO;
+import com.iitposs.pos.dto.response.CustomerAllDetailsResponseDTO;
 import com.iitposs.pos.dto.response.CustomerResponseDTO;
 import com.iitposs.pos.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,4 +52,12 @@ public class CustomerController {
 
     }
 
+    @GetMapping(
+            path = "/get-all-customer-by-state",
+            params = "state"
+    )
+    public List<CustomerAllDetailsResponseDTO> getAllCustomerByState(@RequestParam(value = "state") boolean state){
+        List<CustomerAllDetailsResponseDTO> dtoList = customerService.getAllCustomersByState(state);
+        return dtoList;
+    }
 }

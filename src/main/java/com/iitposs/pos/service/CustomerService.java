@@ -1,6 +1,7 @@
 package com.iitposs.pos.service;
 
 import com.iitposs.pos.dto.request.CustomerSaveRequestDTO;
+import com.iitposs.pos.dto.response.CustomerAllDetailsResponseDTO;
 import com.iitposs.pos.dto.response.CustomerResponseDTO;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface CustomerService {
     List<CustomerResponseDTO> getAllCustomers();
 
     String deleteCustomer(int customerID);
+
+    List<CustomerAllDetailsResponseDTO> getAllCustomersByState(boolean state);
 }
